@@ -1,3 +1,7 @@
+#header {
+  background-image: url("/images/header.jpg");
+}
+
 textarea#markdown {
   width: 95%;
   height: 35em;
