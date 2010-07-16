@@ -7,9 +7,9 @@
       <div id="navigation">
         <a href="/" class="{{home_class}}">Home</a>
         |
-        <a href="/about" class="{{about_class}}">About</a>
-        |
         <a href="/api" class="{{api_class}}">API</a>
+        |
+        <a href="/couchdb" class="{{couchdb_class}}">CouchDB</a>
       </div>
 
       <div id="content">
@@ -41,7 +41,7 @@
           </form>
         {{/home}}
 
-        {{#about}}
+        {{#couchdb}}
           <h2>About Instant Markdown</h2>
           <p>This site runs on <a class="highlight" href="http://www.couch.io/get">Free CouchDB Hosting</a> from Couchio.</p>
           <p>CouchDB is (simultaneously)</p>
@@ -54,7 +54,7 @@
           <p>
             This was built in a few minutes using server-side Javascript. What could be simpler?
           </p>
-        {{/about}}
+        {{/couchdb}}
       </div>
 
 {{>footer}}

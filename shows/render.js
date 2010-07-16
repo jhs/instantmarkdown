@@ -28,7 +28,7 @@ function(doc, req) {
   var section = req.id || 'home';
   values[section] = {};
 
-  var sections = ['home', 'about', 'api'];
+  var sections = ['home', 'couchdb', 'api'];
   for(var a = 0; a < sections.length; a++) {
     values[sections[a] + '_class'] = (section == sections[a]) ? 'active' : 'inactive';
   }
