@@ -5,6 +5,7 @@ textarea#markdown {
 }
 
 p {
+  text-align: left;
   padding-left: 1em;
 }
 
