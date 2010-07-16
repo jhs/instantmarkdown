@@ -58,6 +58,8 @@ function(doc, req) {
     var converter = new showdown.converter();
     values.result.html = converter.makeHtml(markdown);
     values.markdown = markdown;
+
+    values.zeroclipboard = true;
   }
 
   debug = JSON.stringify(req);

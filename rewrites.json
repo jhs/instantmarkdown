@@ -10,6 +10,11 @@
     "method": "GET"
   },
   {
+    "from": "zeroclipboard/*",
+    "to"  : "zeroclipboard/*",
+    "method": "GET"
+  },
+  {
     "from": "*",
     "to": "_show/render/*"
   }

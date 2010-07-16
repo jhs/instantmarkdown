@@ -8,6 +8,16 @@ p {
   padding-left: 1em;
 }
 
+div#d_clip_container {
+  margin-top: 0.2em;
+  margin-left: 0.7em;
+  font-size: 80%;
+}
+
+div#d_clip_container img {
+  vertical-align: bottom;
+}
+
 div.result div.code {
   margin: 0.5em 1em 0;
   background-color: #dfdfdf;

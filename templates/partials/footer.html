@@ -1,4 +1,20 @@
     </div><!-- main_container -->
     <div id="footer">&copy; 2010 <a href="http://github.com/jhs/instantmarkdown">Jason Smith</a> | Design By <a href="http://www.zilladesigns.net">Jeremy D.</a> </div>
   </body>
+  {{#zeroclipboard}}
+    <script type="text/javascript" src="/zeroclipboard/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        ZeroClipboard.setMoviePath('/zeroclipboard/ZeroClipboard10.swf');
+        var clip = new ZeroClipboard.Client();
+        clip.setText($('#raw_html').html());
+        $('#d_clip_container').css('display', 'block');
+        clip.glue('d_clip_button', 'd_clip_container');
+        clip.addEventListener('onMouseDown', function() {
+          $('#copy_text').html('Copied');
+        })
+      })
+    </script>
+  {{/zeroclipboard}}
 </html>

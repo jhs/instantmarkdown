@@ -18,7 +18,15 @@
             <div class="result">
               <h2>Result</h2>
               <div class="code">
-                <code>{{html}}</code>
+                <code id="rendered_html">{{html}}</code>
+              </div>
+            </div>
+
+            <div style="display:none" id="raw_html">{{{html}}}</div>
+            <div id="d_clip_container" style="position:relative; display:none;">
+              <div id="d_clip_button">
+                <img src="/images/edit-paste.png" alt="Copy to clipboard" style="margin-top: 0.2em;"/>
+                <a class="highlight" id="copy_text" href="#">Copy to clipboard</a>
               </div>
             </div>
           {{/result}}
