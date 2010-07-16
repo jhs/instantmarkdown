@@ -4,10 +4,18 @@ textarea#markdown {
   margin-left: 1em;
 }
 
-div.result pre {
-  margin-left: 1em;
-  margin-right: 1em;
+p {
+  padding-left: 1em;
+}
+
+div.result div.code {
+  margin: 0.5em 1em 0;
+  background-color: #dfdfdf;
+  /*
+  border-left: 2px dotted black;
   border-bottom: 1px dotted black;
+  border-top: 1px dotted black;
+  */
 }
 
 #content a:visited,
