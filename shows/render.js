@@ -18,9 +18,14 @@ function(doc, req) {
   var ddoc = this;
   var mustache = require('vendor/mustache');
 
-  doc = doc || {};
-  doc.header = {}; // for partials
-  doc.footer = {};
+  values = {};
 
-  return mustache.to_html(ddoc.templates.landing, {header : {}, footer: {}}, ddoc.templates.partials);    
+  // For partials
+  values.header = {};
+  values.footer = {};
+
+  var section = req.id || 'home';
+  values[section] = {};
+
+  return mustache.to_html(ddoc.templates.landing, values, ddoc.templates.partials);    
 };

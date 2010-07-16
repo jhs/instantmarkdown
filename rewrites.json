@@ -11,7 +11,7 @@
   },
   {
     "from": "*",
-    "to": "_show/render",
+    "to": "_show/render/*",
     "method": "GET"
   }
 ]

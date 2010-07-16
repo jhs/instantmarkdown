@@ -1,1 +1,11 @@
-/* add styles here */
+textarea#markdown {
+  width: 95%;
+  height: 25em;
+  margin-left: 1em;
+}
+
+div.result pre {
+  margin-left: 1em;
+  margin-right: 1em;
+  border-bottom: 1px dotted black;
+}
