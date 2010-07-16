@@ -41,6 +41,38 @@
           </form>
         {{/home}}
 
+        {{#api}}
+          <div class="doc">
+            <p>
+              Instant Markdown provides a Markdown rendering API. You may use the API as long as you
+              acknowledge that it <a class="highlight" href="/couchdb">runs entirely on CouchDB</a>, and that CouchDB is awesome.
+            </p>
+            <p>
+              All API calls work from this URL: <code>{{base}}/api</code>
+            </p>
+            <h2>GET</h2>
+            <p>
+              Use a GET query with a <code>markdown</code> parameter:<br/>
+              <a class="highlight" href="{{base}}/api?markdown=Does+*this*+work%3F">{{base}}/api?markdown=Does+*this*+work%3F</a>
+            </p>
+
+            <h2>POST as a Form</h2>
+            <p>
+              Use a POST query as if from a form (i.e. the Content-Type is <code>application/x-www-urlencoded</code>) with a sole
+              <code>markdown</code> parameter:<br/>
+              <form action="{{base}}/api" method="POST" style="margin-left: 1em">
+                <input type="submit" value="Submit to {{base}}/api"/>
+              </form>
+            </p>
+
+            <h2>POST Raw Markdown</h2>
+            <p>
+              Use a POST query, with any other Content-Type, with the body containing the Markdown source.
+            </p>
+
+          </div>
+        {{/api}}
+
         {{#couchdb}}
           <h2>About Instant Markdown</h2>
           <p>This site runs on <a class="highlight" href="http://www.couch.io/get">Free CouchDB Hosting</a> from Couchio.</p>

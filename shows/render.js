@@ -20,6 +20,8 @@ function(doc, req) {
   var util = require('vendor/util');
 
   values = {};
+  values.base = 'http://' + req.headers.Host;
+  values.here = values.base + '/' + (req.id || '');
 
   // For partials
   values.header = {};
