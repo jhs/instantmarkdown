@@ -46,7 +46,19 @@ function(doc, req) {
   }
 
   // TODO: For the API, check GET or POST
-  values.result.html = markdown;
+  if(markdown) {
+    // Showdown is not a CommonJS module so just make it.
+    ddoc.vendor.showdown = [
+      '(function() {',
+      ddoc.vendor.showdown_src.compressed.showdown,
+      'exports.converter = Showdown.converter;',
+      '})()'
+    ].join("\n");
+    var showdown = require('vendor/showdown');
+    var converter = new showdown.converter();
+    values.result.html = converter.makeHtml(markdown);
+    values.markdown = markdown;
+  }
 
   debug = JSON.stringify(req);
   debug = util.dir(req);
