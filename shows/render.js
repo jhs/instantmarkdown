@@ -17,6 +17,7 @@
 function(doc, req) {
   var ddoc = this;
   var mustache = require('vendor/mustache');
+  var util = require('vendor/util');
 
   values = {};
 
@@ -31,6 +32,25 @@ function(doc, req) {
   for(var a = 0; a < sections.length; a++) {
     values[sections[a] + '_class'] = (section == sections[a]) ? 'active' : 'inactive';
   }
+
+  var markdown;
+  if(section == 'home' && req.method == 'POST') {
+    values.result = {};
+    var kvs = req.body.split('&');
+    for(var a = 0; a < kvs.length; a++) {
+      var kv = kvs[a].split('=');
+      if(kv[0] == 'markdown') {
+        markdown = unescape(kv[1]).replace(/\+/g, ' ');
+      }
+    }
+  }
+
+  // TODO: For the API, check GET or POST
+  values.result.html = markdown;
+
+  debug = JSON.stringify(req);
+  debug = util.dir(req);
+  //values.debug = {"val": debug}; // Uncomment to activate
 
   return mustache.to_html(ddoc.templates.landing, values, ddoc.templates.partials);    
 };

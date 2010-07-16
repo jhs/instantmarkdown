@@ -25,7 +25,7 @@
             Input some <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>:
           </p>
           <form method="POST">
-            <textarea name="markdown" id="markdown"></textarea>
+            <textarea name="markdown" id="markdown">{{#result}}{{html}}{{/result}}</textarea>
             <br>
             <input type="submit" value="Render"/>
           </form>
@@ -48,3 +48,5 @@
       </div>
 
 {{>footer}}
+{{#debug}}<pre>{{val}}</pre>
+{{/debug}}
