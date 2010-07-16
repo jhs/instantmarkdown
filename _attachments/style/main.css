@@ -1,6 +1,6 @@
 textarea#markdown {
   width: 95%;
-  height: 25em;
+  height: 35em;
   margin-left: 1em;
 }
 
@@ -21,11 +21,6 @@ div#d_clip_container img {
 div.result div.code {
   margin: 0.5em 1em 0;
   background-color: #dfdfdf;
-  /*
-  border-left: 2px dotted black;
-  border-bottom: 1px dotted black;
-  border-top: 1px dotted black;
-  */
 }
 
 #content a:visited,
