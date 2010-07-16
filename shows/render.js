@@ -86,10 +86,15 @@ function(doc, req) {
   var markdown = query_to_obj(req.body).markdown;
   if(markdown) {
     values.result = {};
+    var startTime, endTime;
     var converter = get_showdown_converter();
-    values.result.html = converter.makeHtml(markdown);
-    values.markdown = markdown;
 
+    startTime = new Date();
+    values.result.html = converter.makeHtml(markdown);
+    endTime = new Date();
+
+    values.result.time = (endTime - startTime) / 1000;
+    values.markdown = markdown;
     values.zeroclipboard = true;
   }
 
