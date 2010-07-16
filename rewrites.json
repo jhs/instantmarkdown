@@ -1,5 +1,15 @@
 [
   {
+    "from": "style/*",
+    "to"  : "style/*",
+    "method": "GET"
+  },
+  {
+    "from": "images/*",
+    "to"  : "images/*",
+    "method": "GET"
+  },
+  {
     "from": "*",
     "to": "_show/render",
     "method": "GET"
