@@ -9,3 +9,25 @@ div.result pre {
   margin-right: 1em;
   border-bottom: 1px dotted black;
 }
+
+#content a:visited,
+#content a:link {
+  text-decoration: underline;
+}
+
+#navigation a.active {
+  font-weight: bold;
+}
+
+a.highlight:visited,
+a.highlight:link {
+  color: blue;
+}
+
+#content ul {
+  margin: 0;
+}
+
+#footer {
+  border-top: none;
+}

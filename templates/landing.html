@@ -5,11 +5,11 @@
       </div>
 
       <div id="navigation">
-        <a href="/">Home</a>
+        <a href="/" class="{{home_class}}">Home</a>
         |
-        <a href="/about">About</a>
+        <a href="/about" class="{{about_class}}">About</a>
         |
-        <a href="/api">API</a>
+        <a href="/api" class="{{api_class}}">API</a>
       </div>
 
       <div id="content">
@@ -32,8 +32,8 @@
         {{/home}}
 
         {{#about}}
-          <h2>A Challenge</h2>
-          <p>This site runs on <a href="http://www.couch.io/get">Free CouchDB Hosting</a> from Couchio.</p>
+          <h2>About Instant Markdown</h2>
+          <p>This site runs on <a class="highlight" href="http://www.couch.io/get">Free CouchDB Hosting</a> from Couchio.</p>
           <p>CouchDB is (simultaneously)</p>
           <ul>
             <li>A web server</li>

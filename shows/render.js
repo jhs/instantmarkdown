@@ -27,5 +27,10 @@ function(doc, req) {
   var section = req.id || 'home';
   values[section] = {};
 
+  var sections = ['home', 'about', 'api'];
+  for(var a = 0; a < sections.length; a++) {
+    values[sections[a] + '_class'] = (section == sections[a]) ? 'active' : 'inactive';
+  }
+
   return mustache.to_html(ddoc.templates.landing, values, ddoc.templates.partials);    
 };
