@@ -16,6 +16,55 @@
 
 function(doc, req) {
   var ddoc = this;
+  var section = req.id || 'home';
+
+  // Showdown is not a CommonJS module so this makes it one.
+  var showdown_mod;
+  var get_showdown_converter = function() {
+    if(!showdown_mod) {
+      ddoc.vendor.showdown = [
+        '(function() {',
+        ddoc.vendor.showdown_src.compressed.showdown,
+        'exports.converter = Showdown.converter;',
+        '})()'
+      ].join("\n");
+      showdown_mod = require('vendor/showdown');
+    }
+
+    return new showdown_mod.converter();
+  }
+
+  var query_to_obj = function(str) {
+    var result = {};
+    var kvs = str.split('&');
+    for(var a = 0; a < kvs.length; a++) {
+      var kv = kvs[a].split('=');
+      result[kv[0]] = unescape(kv[1]).replace(/\+/g, ' ');
+    }
+    return result;
+  }
+
+  // Handle the API first.
+  if(section == 'api') {
+    var result = {"code": 200, "headers":{"Content-Type":"text/plain"}}; // TODO: I did this for security so browsers wouldn't render. Is that necessary?
+
+    if(req.method == 'GET' && req.query.markdown) {
+      result.body = get_showdown_converter().makeHtml(req.query.markdown);
+      return result;
+    } else if(req.method == 'POST') {
+      // Support cURL which unfortunately by default sets the form content-type even when sending raw data.
+      var markdown = req.body;
+      if(req.headers['Content-Type'] == 'application/x-www-form-urlencoded' && req.body.match(/^markdown=/))
+        markdown = query_to_obj(req.body).markdown
+      result.body = get_showdown_converter().makeHtml(markdown || '');
+      return result;
+    }
+  }
+
+  //
+  // Handle normal rendering.
+  //
+
   var mustache = require('vendor/mustache');
   var util = require('vendor/util');
 
@@ -27,7 +76,6 @@ function(doc, req) {
   values.header = {};
   values.footer = {};
 
-  var section = req.id || 'home';
   values[section] = {};
 
   var sections = ['home', 'couchdb', 'api'];
@@ -35,36 +83,16 @@ function(doc, req) {
     values[sections[a] + '_class'] = (section == sections[a]) ? 'active' : 'inactive';
   }
 
-  var markdown;
-  if(section == 'home' && req.method == 'POST') {
-    values.result = {};
-    var kvs = req.body.split('&');
-    for(var a = 0; a < kvs.length; a++) {
-      var kv = kvs[a].split('=');
-      if(kv[0] == 'markdown') {
-        markdown = unescape(kv[1]).replace(/\+/g, ' ');
-      }
-    }
-  }
-
-  // TODO: For the API, check GET or POST
+  var markdown = query_to_obj(req.body).markdown;
   if(markdown) {
-    // Showdown is not a CommonJS module so just make it.
-    ddoc.vendor.showdown = [
-      '(function() {',
-      ddoc.vendor.showdown_src.compressed.showdown,
-      'exports.converter = Showdown.converter;',
-      '})()'
-    ].join("\n");
-    var showdown = require('vendor/showdown');
-    var converter = new showdown.converter();
+    values.result = {};
+    var converter = get_showdown_converter();
     values.result.html = converter.makeHtml(markdown);
     values.markdown = markdown;
 
     values.zeroclipboard = true;
   }
 
-  debug = JSON.stringify(req);
   debug = util.dir(req);
   //values.debug = {"val": debug}; // Uncomment to activate
 
