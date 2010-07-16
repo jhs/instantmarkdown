@@ -24,7 +24,7 @@ a:hover {
 #header {
 	height:174px;
 	width:100%;
-	background-image: url(/images/clock.jpg);
+	/* background-image: url(/images/clock.jpg); */
 	background-repeat: no-repeat;
 	}
 	
