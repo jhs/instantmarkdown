@@ -18,6 +18,9 @@ function(doc, req) {
   var ddoc = this;
   var section = req.id || 'home';
 
+  if(section == 'robots.txt')
+    return {"code":200, "headers":{"Content-Type":"text/plain"}, "body":"User-agent: *\r\nCrawl-delay: 10\r\n"};
+
   // Showdown is not a CommonJS module so this makes it one.
   var showdown_mod;
   var get_showdown_converter = function() {
