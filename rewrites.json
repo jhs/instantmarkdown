@@ -1,0 +1,7 @@
+[
+  {
+    "from": "*",
+    "to": "_show/render",
+    "method": "GET"
+  }
+]
