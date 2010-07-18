@@ -72,7 +72,8 @@ function(doc, req) {
   var util = require('vendor/util');
 
   values = {};
-  values.base = 'http://' + req.headers.Host;
+  values.host = req.headers.Host.split(':')[0];
+  values.base = 'http://' + values.host;
   values.here = values.base + '/' + (req.id || '');
 
   // For partials
@@ -103,6 +104,14 @@ function(doc, req) {
 
   debug = util.dir(req);
   //values.debug = {"val": debug}; // Uncomment to activate
+
+  var ga = ddoc.google_analytics;
+  if(util.is_hash(ga) && ga.account && ga.domain) {
+    var subdomain_re = new RegExp('.' + ga.domain + '$');
+    if(values.host != ga.domain && !values.host.match(subdomain_re))
+      ga['error'] = {"message": "Configured for " + ga.domain + " but this is " + values.host};
+    values.header.google_analytics = ga;
+  }
 
   return mustache.to_html(ddoc.templates.landing, values, ddoc.templates.partials);    
 };
